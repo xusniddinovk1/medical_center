@@ -12,6 +12,7 @@ def contact_list(request):
     }
     return render(request, 'dashboard/contact/list.html', ctx)
 
+
 @login_required_decorator
 def create_contact(request):
     model = Contact()
