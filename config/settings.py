@@ -21,6 +21,7 @@ INSTALLED_APPS = [
 
     'core',
     'dashboard',
+    'custom_auth',
 ]
 
 MIDDLEWARE = [
