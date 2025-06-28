@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="uz">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mohlaroyim medical</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<header class="navbar">
+    <div class="container">
+        <div class="logo">Mohlaroyim medical MChJ</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" onclick="selectSection('home')">Bosh sahifa</a></li>
+                <li>
+                    <a href="#xizmatlar" onclick="selectSection('services')">Xizmatlar</a>
+                </li>
+                <li>
+                    <a href="#bo'glanish" onclick="selectSection('contact')">Bog'lanish</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+</header>
+<main>
+    <div class="hero">
+        <img src="{% static 'core/img/img.png' %}" alt="Asosiy Rasm"/>
+        <div class="overlay">
+            <div class="services-box">
+                <h3>Xizmatlar</h3>
+                <ul>
+                    {% for service in services %}
+                    <li>{{ service.name }} — {{ service.price|floatformat:0 }} so'm</li>
+                    {% empty %}
+                    <li>Xizmatlar mavjud emas</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'core/js/script.js' %}"></script>
+</body>
+</html>
