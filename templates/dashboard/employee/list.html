@@ -1,32 +1,31 @@
 {% extends 'dashboard/base.html' %}
 {% load humanize %}
 
-{% block title %}About Us List{% endblock %}
-{% block page_header %}Lessons List{% endblock %}
+{% block title %}Xodimlar ro'yhati{% endblock %}
+{% block page_header %}Xodimlar ro'yhati{% endblock %}
 
 {% block content %}
 <div class="container center-content">
     <div style="text-align: right; margin-bottom: 1rem;">
-        <a href="{% url 'lessons_create' %}" class="btn btn-success">➕ Yangi bo‘lim qo‘shish</a>
+        <a href="{% url 'create_employee' %}" class="btn btn-success">➕ Yangi bo‘lim qo‘shish</a>
     </div>
     <div class="table-wrapper">
         <table class="table">
             <thead>
             <tr>
-                <th class="title">Sarlavha</th>
-                <th class="slug">Slug</th>
-                <th class="description">Tavsif</th>
+                <th class="first_name">Ismi</th>
+                <th class="last_name">Familiyasi</th>
+                <th class="phone_number">Telefon raqami</th>
                 <th class="image">Rasm</th>
-                <th class="created">Yaratilgan</th>
                 <th class="actions">Amallar</th>
             </tr>
             </thead>
             <tbody>
-            {% for txt in lessons %}
+            {% for txt in employees %}
             <tr>
-                <td class="title">{{ txt.title }}</td>
-                <td class="slug">{{ txt.slug }}</td>
-                <td class="description">{{ txt.description|truncatechars:60 }}</td>
+                <td class="first_name">{{ txt.first_name }}</td>
+                <td class="last_name">{{ txt.last_name }}</td>
+                <td class="phone_number">{{ txt.phone_number|truncatechars:60 }}</td>
                 <td class="image">
                     {% if txt.image %}
                     <img src="{{ txt.image.url }}" alt="Rasm"/>
@@ -34,11 +33,10 @@
                     Yo‘q
                     {% endif %}
                 </td>
-                <td class="created">{{ txt.created_at|date:"Y-m-d H:i" }}</td>
 
                 <td class="actions">
-                    <a href="{% url 'lessons_edit' txt.slug %}" class="btn btn-warning btn-sm">✏️</a>
-                    <a href="{% url 'lessons_delete' txt.slug %}" class="btn btn-danger btn-sm">🗑️</a>
+                    <a href="{% url 'edit_employee' txt.id %}" class="btn btn-warning btn-sm">✏️</a>
+                    <a href="{% url 'delete_employee' txt.id %}" class="btn btn-danger btn-sm">🗑️</a>
                 </td>
             </tr>
             {% empty %}
