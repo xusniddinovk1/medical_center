@@ -28,8 +28,8 @@ def create_contact(request):
 
 
 @login_required_decorator
-def edit_contact(request, pk):
-    model = Contact.objects.get(pk=pk)
+def edit_contact(request, id):
+    model = Contact.objects.get(pk=id)
     form = ContactForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -38,11 +38,11 @@ def edit_contact(request, pk):
         'model': model,
         'form': form
     }
-    return render(request, 'dashboard/contact/orm.html', ctx)
+    return render(request, 'dashboard/contact/form.html', ctx)
 
 
 @login_required_decorator
-def delete_contact(request, pk):
-    model = Contact.objects.get(pk=pk)
+def delete_contact(request, id):
+    model = Contact.objects.get(pk=id)
     model.delete()
     return redirect('contact_list')
