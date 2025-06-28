@@ -10,9 +10,9 @@ def login_required_decorator(func):
 
 def login_page(request):
     if request.method == 'POST':
-        phone_number = request.get('phone_number', None)
-        password = request.get('password', None)
-        remember = request.get('remember_me')
+        phone_number = request.POST.get('phone_number', None)
+        password = request.POST.get('password', None)
+        remember = request.POST.get('remember_me')
 
         user = authenticate(request, phone_number=phone_number, password=password)
         if user:
@@ -35,7 +35,7 @@ def logout_page(request):
     return redirect('login_page')
 
 
-@logout_page
+@login_required_decorator
 def home_page(request):
     contact = Contact.objects.all()
     services = Service.objects.all()
@@ -43,14 +43,14 @@ def home_page(request):
 
     items = [
         {
-            "icon": "fa-users",
+            "icon": "fa-service",
             "color": "#3b82f6",  # blue-500
             "count": services.count(),
             "label": "Services",
             "chart_data": [services.count(), services.count() // 2, services.count() // 3]
         },
         {
-            "icon": "fa-book",
+            "icon": "fa-employees",
             "color": "#10b981",  # green-500
             "count": employees.count(),
             "label": "News",
