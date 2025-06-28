@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from core.models import Contact, Service, Employee
-from dashboard.forms import ContactForm, ServiceForm, EmployeeForm
+from core.models import Contact
+from dashboard.forms import ContactForm
 from dashboard.views.home import login_required_decorator
 
 
