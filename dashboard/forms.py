@@ -26,9 +26,11 @@ class ServiceForm(forms.ModelForm):
 class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
-        fields = ['first_name', 'last_name', 'phone_number']
+        fields = ['first_name', 'last_name', 'phone_number', 'image']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Xodimning ismi'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Xodim familiyasi'}),
-            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefon raqamini kiriting'})
+            'phone_number': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Telefon raqamini kiriting'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'onchange': 'loadFile(event)'})
         }

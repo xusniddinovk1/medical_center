@@ -8,7 +8,7 @@ from dashboard.views.home import login_required_decorator
 def service_list(request):
     services = Service.objects.all()
     ctx = {
-        'service': services
+        'services': services
     }
     return render(request, 'dashboard/service/list.html', ctx)
 
@@ -28,8 +28,8 @@ def create_service(request):
 
 
 @login_required_decorator
-def edit_service(request, pk):
-    model = Service.objects.get(pk=pk)
+def edit_service(request, id):
+    model = Service.objects.get(pk=id)
     form = ServiceForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -42,14 +42,7 @@ def edit_service(request, pk):
 
 
 @login_required_decorator
-def delete_service(request, pk):
-    model = Service.objects.get(pk=pk)
-    form = ServiceForm(request.POST or None, instance=model)
-    if request.POST and form.is_valid():
-        form.save()
-        return redirect('service_list')
-    ctx = {
-        'model': model,
-        'form': form
-    }
-    return render(request, 'dashboard/service/form.html', ctx)
+def delete_service(request, id):
+    model = Service.objects.get(pk=id)
+    model.delete()
+    return redirect(service_list)

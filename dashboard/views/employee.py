@@ -28,8 +28,8 @@ def create_employee(request):
 
 
 @login_required_decorator
-def edit_employee(request, pk):
-    model = Employee.objects.get(pk=pk)
+def edit_employee(request, id):
+    model = Employee.objects.get(pk=id)
     form = EmployeeForm(request.POST or None, request.FILES or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -42,7 +42,7 @@ def edit_employee(request, pk):
 
 
 @login_required_decorator
-def delete_employee(request, pk):
-    model = Employee.objects.get(pk=pk)
+def delete_employee(request, id):
+    model = Employee.objects.get(pk=id)
     model.delete()
     return redirect('employee_list')

@@ -21,8 +21,8 @@
             <tbody>
             {% for txt in services %}
             <tr>
-                <td class="title">{{ txt.name| truncatechars:10 }}</td>
-                <td class="slug">{{ txt.price }}</td>
+                <td class="name">{{ txt.name }}</td>
+                <td class="price">{{ txt.price }}</td>
                 <td class="actions">
                     <a href="{% url 'edit_service' txt.id %}" class="btn btn-warning btn-sm">✏️</a>
                     <a href="{% url 'delete_service' txt.id %}" class="btn btn-danger btn-sm">🗑️</a>
